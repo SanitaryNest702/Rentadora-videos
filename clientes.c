@@ -1,15 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<ctype.h>
-#define MAX_CLIENTES 100
-
-struct Cliente{
-int id;
-char nombre[50];
-char telefono[50];
-char direccion[100];
-int activo;//* 1= existe, 0=No existe*/
-};
+#include "clientes.h"
 
 struct Cliente clientes[MAX_CLIENTES];
 int totalClientes=0;
@@ -107,7 +99,7 @@ void actualizarCliente(){
 }
 
 
-void eleminarCliente(){
+void eliminarCliente(){
   int id;
   printf("Ingrese el ID del cliente a eliminar:\n");
   scanf("%d", &id);
@@ -178,7 +170,3 @@ do{
     }
   }while(opcion!=0);
   }
-int main(){
-  menuClientes();
-  return 0;
-}
