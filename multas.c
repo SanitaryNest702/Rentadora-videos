@@ -1,17 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<ctype.h>
-#define MAX_MULTAS 100
-struct Multa{
-int id;
-int idRenta;
-int idCliente;
-float monto;
-float montoPagado;
-int tipo; /*1=retraso 2=perdida*/
-int saldada;/*1=pagada 0=pendiente*/
-int activo;/*1=existe 0=eliminada*/
-};
+#include "multas.h"
 
 struct Multa multas[MAX_MULTAS];
 int totalMultas=0;
