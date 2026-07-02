@@ -48,8 +48,10 @@ int encontrado=0;
       encontrado=1;
       break;
     }
+  }
     if(encontrado==0){
       printf("Cliente no encontrado\n");
+}
 }
 
 void actualizarCliente(){
@@ -93,6 +95,8 @@ void actualizarCliente(){
         default:
         printf("Opcion invalida\n");
   }
+    }
+  }
       if(encontrado==0){
         printf("Cliente no encontrado\n");
       }
@@ -116,7 +120,7 @@ void eliminarCliente(){
       char confirmacion[3];
       printf("Esta seguro que desea eliminar al cliente?\n");
       scanf("%s", confirmacion);
-      for(int i=0;i<strlen(confirmacion);i ++){
+      for(int j=0;j<strlen(confirmacion);j++){
         confirmacion[i]=toupper(confirmacion[i]);
       }
       if(strcmp(confirmacion, "SÍ")==0|| strcmp(confirmacion, "SI")==0){
