@@ -1,4 +1,4 @@
-#infdef CLIENTES_H
+#ifndef CLIENTES_H
 #define CLIENTES_H
 #define MAX_CLIENTES 100
 struct Cliente{
@@ -8,11 +8,11 @@ char telefono[50];
 char direccion[100];
 int activo;
 };
-extern struct Cliente cliente[MAX_CLIENTES];
+extern struct Cliente clientes[MAX_CLIENTES];
 extern int totalClientes;
 void registrarClientes();
 void buscarCliente();
 void actualizarCliente();
 void eliminarCliente();
-void menuClientes()
-#endif;
+void menuClientes();
+#endif
