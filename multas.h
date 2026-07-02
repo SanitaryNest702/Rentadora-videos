@@ -13,12 +13,12 @@ int saldada; /*1=pagada 0=pendiente */
 int activo;/*1=existe 0=eliminada*/
 };
 
-extern struct Multa multas[MAX_MMULTAS];
+extern struct Multa multas[MAX_MULTAS];
 extern int totalMultas;
-void generarMultas(int idRenta, int idCliente, int diasRetraso);
+void generarMultaRetraso(int idRenta, int idCliente, int diasRetraso);
 void generarMultaPerdida(int idRenta, int idCliente, float valorPelicula);
 void consultarMultaCliente(int idCliente);
-void registrarPelicula();
 void menuMultas();
+void registrarPagoMulta();
 
 #endif
