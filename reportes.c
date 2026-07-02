@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<string.h>
+#include<ctype.h>
 #include "reportes.h"
 #include "rentas.h"
 #include "multas.h"
@@ -226,7 +227,7 @@ void exportarReporte() {
 }
 
 void limpiarHistorial() {
-    char confirmacion[3];
+    char confirmacion[10];
     printf("Esta seguro que desea limpiar el historial? (SI/NO): ");
     scanf("%s", confirmacion);
 
