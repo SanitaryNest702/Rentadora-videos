@@ -45,6 +45,7 @@ struct Cliente nuevo;
   clientes[totalClientes]=nuevo;
   totalClientes++;
   printf("Cliente registrado con exito\n");
+    printf("ID asignado: %d\n", nuevo.id);
 }
 
 void buscarCliente(){
@@ -67,9 +68,21 @@ int encontrado=0;
       printf("Cliente no encontrado\n");
 }
 }
-
+void listarClientes(){
+  if(totalClientes==0){
+    printf("No hay clientes registrados\n");
+    return;
+  }
+  printf("\n=== LISTA DE CLIENTES ===\n");
+  for(int i=0;i<totalClientes;i++){
+    if(clientes[i].activo==1){
+      printf("ID: %d - %s\n", clientes[i].id, clientes[i].nombre);
+    }
+  }
+}
 void actualizarCliente(){
   int id;
+    listarClientes();
   printf("Ingrese el ID del cliente a actualizar\n");
   scanf("%d", &id);
   int encontrado=0;
@@ -119,6 +132,7 @@ void actualizarCliente(){
 
 void eliminarCliente(){
   int id;
+    listarClientes();
   printf("Ingrese el ID del cliente a eliminar:\n");
   scanf("%d", &id);
   int encontrado=0;
@@ -131,13 +145,13 @@ void eliminarCliente(){
       printf("Telefono: %s\n", clientes[i].telefono);
       printf("Direccion: %s\n", clientes[i].direccion);
 
-      char confirmacion[3];
+      char confirmacion[10];
       printf("Esta seguro que desea eliminar al cliente?\n");
       scanf("%s", confirmacion);
       for(int j=0;j<strlen(confirmacion);j++){
-        confirmacion[i]=toupper(confirmacion[i]);
+        confirmacion[j]=toupper(confirmacion[j]);
       }
-      if(strcmp(confirmacion, "SÍ")==0|| strcmp(confirmacion, "SI")==0){
+      if(strcmp(confirmacion, "SI")==0){
         clientes[i].activo=0;
         printf("Cliente eliminado correctamente\n");
     }else{
