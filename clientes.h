@@ -15,4 +15,5 @@ void buscarCliente();
 void actualizarCliente();
 void eliminarCliente();
 void menuClientes();
+void pausar();
 #endif
