@@ -9,8 +9,6 @@ void calcularPromedioDiasRenta();
 void calcularTotalMultas();
 void calcularIngresoTotalRentas();
 void listarRentasVencidas();
-void exportarReporte();
-void limpiarHistorial();
 void menuReportes();
 
 #endif
