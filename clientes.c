@@ -2,6 +2,20 @@
 #include<string.h>
 #include<ctype.h>
 #include "clientes.h"
+#ifdef _WIN32
+    #include <windows.h>
+    #define LIMPIAR_PANTALLA() system("cls")
+#else
+    #include <unistd.h>
+    #define LIMPIAR_PANTALLA() system("clear")
+#endif
+
+void pausar(){
+    printf("\nPresione ENTER para continuar...");
+    while(getchar() != '\n');
+    getchar();
+    LIMPIAR_PANTALLA();
+}
 
 struct Cliente clientes[MAX_CLIENTES];
 int totalClientes=0;
@@ -172,5 +186,8 @@ do{
     default:
     printf("Opcion invalida\n"); 
     }
+  if(opcion != 0){
+      pausar();
+  }
   }while(opcion!=0);
   }
