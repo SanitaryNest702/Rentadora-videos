@@ -290,5 +290,8 @@ void menuReportes() {
             default:
               printf("Opcion invalida.\n");
         }
+      if(opcion!=0){
+        pausar();
+      }
     } while(opcion != 0);
 }
