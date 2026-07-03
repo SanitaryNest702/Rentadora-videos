@@ -3,14 +3,14 @@
 #define MAX_MULTAS 100
 
 struct Multa{
-int id;
-int idRenta;
-int idCliente;
-float monto;
-float montoPagado;
-int tipo;/*1=retraso 2=perdida*/
-int saldada; /*1=pagada 0=pendiente */
-int activo;/*1=existe 0=eliminada*/
+	int id;
+	int idRenta;
+	int idCliente;
+	float monto;
+	float montoPagado;
+	int tipo;/*1=retraso 2=perdida*/
+	int saldada; /*1=pagada 0=pendiente */
+	int activo;/*1=existe 0=eliminada*/
 };
 
 extern struct Multa multas[MAX_MULTAS];
