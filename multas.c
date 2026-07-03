@@ -2,6 +2,20 @@
 #include<string.h>
 #include<ctype.h>
 #include "multas.h"
+#ifdef _WIN32
+    #include <windows.h>
+    #define LIMPIAR_PANTALLA() system("cls")
+#else
+    #include <unistd.h>
+    #define LIMPIAR_PANTALLA() system("clear")
+#endif
+
+void pausar(){
+    printf("\nPresione ENTER para continuar...");
+    while(getchar() != '\n');
+    getchar();
+    LIMPIAR_PANTALLA();
+}
 
 struct Multa multas[MAX_MULTAS];
 int totalMultas=0;
@@ -181,6 +195,9 @@ do{
     break;
     default:
     printf("Opcion invalida\n");
+  }
+  if(opcion!=0){
+    pausar();
   }
 }while(opcion!=0);
 }
