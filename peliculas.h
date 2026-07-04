@@ -2,21 +2,29 @@
 #define PELICULAS_H
 #define MAX_PELICULAS 100
 #define MAX_CATEGORIAS 20
-
+/*
+* Pelicula (Struct)
+* Descripcion: Sirve de molde para todas las películas que se vayan a crear, incluye id, titulo, año, copias totales de la película, copias disponibles
+* de la película, a que categoría está relacionada y si se encuentra rentada o no
+*/
 struct Pelicula{
 	int id;
 	char titulo[100];
 	int anio;
 	int copiasTotales;
 	int copiasDisponibles;
-	int idCategoria;/*0=sin categoria; la categoria funciona como el genero de la pelicula*/
-	int activo;/*1=existe 0=eliminada*/
+	int idCategoria;
+	int activo;
 };
 
+/*
+* Categoria (Struct)
+* Descripcion: Sirve de molde para todas las categorías que se vayan a crear, cada una con id, nombre y si se encuentra en activo o no
+*/
 struct Categoria{
 	int id;
 	char nombre[50];
-	int activo;/*1=existe 0=eliminada*/
+	int activo;
 };
 
 extern struct Pelicula peliculas[MAX_PELICULAS];

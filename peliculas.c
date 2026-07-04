@@ -1,3 +1,12 @@
+/*
+* ==========================================================
+* Archivo : peliculas.c
+* Autor : José Ontiveros
+* Fecha : 03/07/2026
+* Descripción : Permite agregar películas, eliminarlas, buscar películas y hace lo mismo con las categorías.
+* Versión : 1.0
+* ==========================================================
+*/
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -5,13 +14,25 @@
 #include "peliculas.h"
 #include "rentas.h"
 
+/* */
 struct Pelicula peliculas[MAX_PELICULAS];
 int totalPeliculas=0;
 
+/* */
 struct Categoria categorias[MAX_CATEGORIAS];
 int totalCategorias=0;
 
-/*Funcion auxiliar interna para obtener el nombre de una categoria por su ID*/
+/*
+* ----------------------------------------------------------
+* Función: obtenerNombreCategoria
+* Descripción: Obtiene el nombre de la categoría correspondiente a un ID dado y lo copia en la variable destino. Si el ID es 0 o la categoria
+	no se encuentra, asigna el texto "Sin categoria".
+* Parámetros :
+* 	idCategoria (int) — ID de la categoria a buscar
+* 	destino (char*) — cadena donde se almacena el nombre encontrado
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void obtenerNombreCategoria(int idCategoria, char *destino){
 	if( idCategoria == 0){
 		strcpy(destino, "Sin categoria");
@@ -26,6 +47,15 @@ void obtenerNombreCategoria(int idCategoria, char *destino){
 	strcpy(destino, "Sin categoria");
 }
 
+/*
+* ----------------------------------------------------------
+* Función: agregarPelicula
+* Descripción: Registra una nueva pelicula solicitando al usuario titulo, año, copias disponibles y categoria. Verifica que no se exceda 
+	el limite de peliculas y que no exista ya una pelicula con el mismo titulo.
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/	
 void agregarPelicula(){
 	if (totalPeliculas >= MAX_PELICULAS){
 		printf("No se pueden registrar mas peliculas, limite alcanzado\n");
@@ -86,7 +116,15 @@ void agregarPelicula(){
 	printf("Pelicula registrada con exito con ID %d.\n", totalPeliculas);
 }
 
-
+/*
+* ----------------------------------------------------------
+* Función: eliminarPelicula
+* Descripción: Elimina logicamente una pelicula segun el ID capturado. Antes de eliminar valida que la pelicula no tenga rentas activas 
+	sin devolver, y pide confirmacion al usuario (SI/NO).
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/		
 void eliminarPelicula(){
 	int id, encontrado = 0;
 	printf("Ingrese el ID de la pelicula a eliminar: ");
@@ -130,7 +168,16 @@ void eliminarPelicula(){
 		printf("Pelicula no encontrada\n");
 	}
 }
-
+	
+/*
+* ----------------------------------------------------------
+* Función: buscarPelicula
+* Descripción: Busca una pelicula activa por titulo o por ID, segun la opcion elegida por el usuario, y muestra en pantalla sus datos 
+	junto con el nombre de su categoria.
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/	
 void buscarPelicula(){
 	int opcion, encontrado=0;
 	char titulo[100];
@@ -180,7 +227,15 @@ void buscarPelicula(){
 		printf("Pelicula no encontrada\n");
 	}
 }
-
+	
+/*
+* ----------------------------------------------------------
+* Función: listarPeliculasDisponibles
+* Descripción: Recorre el arreglo de peliculas y muestra en pantalla unicamente aquellas activas que tienen al menos una copia disponible.
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/	
 void listarPeliculasDisponibles(){
 	int encontrado=0;
 	printf("\n===Peliculas Disponibles===\n");
@@ -198,7 +253,16 @@ void listarPeliculasDisponibles(){
 		printf("No hay peliculas disponibles\n");
 	}
 }
-
+	
+/*
+* ----------------------------------------------------------
+* Función: agregarCategoria
+* Descripción: Registra una nueva categoria solicitando su nombre al usuario. Verifica que no se exceda el limite de categorias y que 
+	no exista ya una categoria activa con el mismo nombre.
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/	
 void agregarCategoria(){
 	struct Categoria nueva;
 	
@@ -224,6 +288,15 @@ void agregarCategoria(){
 	printf("Categoria registrada con ID %d.\n", totalCategorias);
 }
 
+/*
+* ----------------------------------------------------------
+* Función: eliminarCategoria
+* Descripción: Elimina logicamente una categoria segun el ID capturado, validando primero que ninguna pelicula activa este usando dicha 
+	categoria antes de proceder con la eliminacion.
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/	
 void eliminarCategoria(){
 	int id, encontrado=0;
 	printf("Ingrese el ID de la categoria a eliminar: ");
@@ -252,6 +325,14 @@ void eliminarCategoria(){
 	}
 }
 
+/*
+* ----------------------------------------------------------
+* Función: listarCategorias
+* Descripción: Muestra en pantalla el ID y nombre de todas las categorias activas registradas en el sistema.
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/	
 void listarCategorias(){
 	int encontrado=0;
 	printf("\n===Categorias===\n");
@@ -268,6 +349,15 @@ void listarCategorias(){
 	}
 }
 
+/*
+* ----------------------------------------------------------
+* Función: asignarCategoria
+* Descripción: Asigna una categoria existente a una pelicula existente. Solicita al usuario el ID de la pelicula y el ID de la categoria, 
+	validando que ambos existan antes de realizar la asignacion.
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void asignarCategoria(){
 	int idPelicula, idCategoria;
 	printf("ID de la pelicula: \n");
@@ -303,6 +393,14 @@ void asignarCategoria(){
 	}
 }
 
+/*
+* ----------------------------------------------------------
+* Función: listarPorCategoria
+* Descripción: Solicita al usuario el ID de una categoria y muestra en pantalla todas las peliculas activas que pertenecen a dicha categoria.
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/	
 void listarPorCategoria(){
 	int idCategoria;
 	printf("Ingrese el ID de la categoria: ");
@@ -337,7 +435,16 @@ void listarPorCategoria(){
 		printf("No hay peliculas registradas en esta categoria\n");
 	}
 }
-
+	
+/*
+* ----------------------------------------------------------
+* Función: menuPeliculas
+* Descripción: Despliega el menu del modulo de peliculas y categorias, y en un ciclo repite la lectura de la opcion elegida por el usuario 
+	invocando la funcion correspondiente hasta que se elija regresar al menu principal (opcion 0).
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/	
 void menuPeliculas(){
 	int opcion;
 	do{

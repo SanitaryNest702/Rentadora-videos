@@ -8,6 +8,15 @@
 void mostrarMenuPrincipal();
 void dirigirFlujo(int opcion);
 
+/*
+* ----------------------------------------------------------
+* Función: mostrarMenuPrincipal
+* Descripción: Muestra las opciones que puede escoger el usuario para trabajar
+* Parámetros :
+* 	No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void mostrarMenuPrincipal(){
 	printf("===SISTEMA DE RENTADORA DE VIDEOS===\n");
 	printf("1.Modulo de Peliculas\n");
@@ -19,6 +28,15 @@ void mostrarMenuPrincipal(){
 	printf("Elija una opcion: ");
 }
 
+/*
+* ----------------------------------------------------------
+* Función: dirigirFlujo
+* Descripción: Permite seleccionar con que módulo se quiere trabajar o si se quiere salir del programa
+* Parámetros :
+* 	opcion (int): Sirve como identificador para escoger que opción trabajara
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void dirigirFlujo(int opcion){
 	switch(opcion){
 		case 1:
@@ -50,6 +68,12 @@ void dirigirFlujo(int opcion){
 	}
 }
 
+/*
+* ----------------------------------------------------------
+* Función: main
+* Descripción: Llama a las funciones para mostrar el menú y dirigir la opción ingresada por el usuario para ir a un módulo específico o salir del programa
+* ----------------------------------------------------------
+*/
 int main(){
 	int opcion;
 	

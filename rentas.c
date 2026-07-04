@@ -1,3 +1,12 @@
+/*
+* ==========================================================
+* Archivo : rentas.c
+* Autor : José Ontiveros
+* Fecha : 03/07/2026
+* Descripción : Permite agregar rentas, registrar devolucione de películas y consultar las rentas activas
+* Versión : 1.0
+* ==========================================================
+*/
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -9,6 +18,16 @@
 struct Renta rentas[MAX_RENTAS];
 int totalRentas=0;
 
+/*
+* ----------------------------------------------------------
+* Función: registrarRenta
+* Descripción: Registra una nueva renta solicitando el ID del cliente y de la pelicula. Valida que el cliente exista, 
+	que no tenga multas pendientes, que la pelicula exista y tenga copias disponibles, y que los dias de renta sean validos. 
+	Calcula el monto a pagar y resta una copia disponible de la pelicula.
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void registrarRenta(){
 	if(totalRentas>=MAX_RENTAS){
 		printf("No se pueden registrar mas rentas, limite alcanzado\n");
@@ -21,7 +40,6 @@ void registrarRenta(){
 	printf("ID de la pelicula: ");
 	scanf("%d", &idPelicula);
 
-	/*Verificar que el cliente exista*/
 	int clienteEncontrado=0;
 	for(int i=0; i<totalClientes; i++){
 		if(clientes[i].activo==1 && clientes[i].id==idCliente){
@@ -35,7 +53,6 @@ void registrarRenta(){
 		return;
 	}
 
-	/*Verificar que el cliente no tenga multas pendientes*/
 	for(int i=0; i<totalMultas; i++){
 		if(multas[i].activo==1 && multas[i].idCliente==idCliente && multas[i].saldada==0){
 			printf("Cliente con multas pendientes, no se puede rentar\n");
@@ -43,7 +60,6 @@ void registrarRenta(){
 		}
 	}
 
-	/*Verificar que la pelicula exista y tenga copias disponibles*/
 	int peliculaIndex=-1;
 	for(int i=0; i<totalPeliculas; i++){
 		if(peliculas[i].activo==1 && peliculas[i].id==idPelicula){
@@ -90,6 +106,15 @@ void registrarRenta(){
 	printf("Monto de la renta: %.2f\n", nueva.montoRenta);
 }
 
+/*
+* ----------------------------------------------------------
+* Función: registrarDevolucion
+* Descripción: Registra la devolucion de una renta segun su ID. Solicita los dias reales que duro la renta, marca la renta como devuelta, 
+	regresa la copia al inventario de peliculas y, si la devolucion fue tardia, marca la renta como vencida y genera una multa por retraso.
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void registrarDevolucion(){
 	int id;
 	printf("Ingrese el ID de la renta a devolver: ");
@@ -136,7 +161,16 @@ void registrarDevolucion(){
 		printf("Renta no encontrada\n");
 	}
 }
-
+	
+/*
+* ----------------------------------------------------------
+* Función: consultarRentasActivas
+* Descripción: Muestra en pantalla el detalle de todas las rentas activas que aun no han sido devueltas (ID de renta, ID de cliente, 
+	ID de pelicula, dias de renta y monto).
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/	
 void consultarRentasActivas(){
 	int encontrado=0;
 	printf("\n===Rentas Activas===\n");
@@ -156,7 +190,16 @@ void consultarRentasActivas(){
 		printf("No hay rentas pendientes de devolucion\n");
 	}
 }
-
+	
+/*
+* ----------------------------------------------------------
+* Función: menuRentas
+* Descripción: Despliega el menu del modulo de rentas y en un ciclo repite la lectura de la opcion elegida por el usuario, invocando 
+	la funcion correspondiente hasta que se elija regresar al menu principal (opcion 0).
+* Parámetros : No tiene parámetros
+* Retorna: No retorna valor alguno
+* ----------------------------------------------------------
+*/	
 void menuRentas(){
 	int opcion;
 	
