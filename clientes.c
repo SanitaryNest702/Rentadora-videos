@@ -1,3 +1,13 @@
+/*
+* ==========================================================
+* Archivo     : clientes.c
+* Autor       :Hiram Dzul
+* Fecha       : 03/07/2026
+* Descripción : Permite registrar, buscar, actualizar y eliminar
+*               clientes del sistema de la rentadora de videos.
+* Versión     : 1.0
+* ==========================================================
+*/
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -16,10 +26,20 @@ void pausar(){
     getchar();
     LIMPIAR_PANTALLA();
 }
-
+/* Arreglo de clientes y contador total */
 struct Cliente clientes[MAX_CLIENTES];
 int totalClientes=0;
 
+/*
+* ----------------------------------------------------------
+* Función    : registrarClientes
+* Descripción: Registra un nuevo cliente en el sistema solicitando
+*              nombre, teléfono y dirección. Verifica que el cliente
+*              no esté duplicado antes de registrarlo.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void registrarClientes(){
 	if(totalClientes>=MAX_CLIENTES){
 		printf("No se pueden registrar mas clientes, limite alcanzado\n");
@@ -48,6 +68,15 @@ void registrarClientes(){
     printf("ID asignado: %d\n", nuevo.id);
 }
 
+/*
+* ----------------------------------------------------------
+* Función    : buscarCliente
+* Descripción: Busca un cliente activo por nombre e imprime
+*              sus datos si es encontrado.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void buscarCliente(){
 	char nombre[50];
 	printf("Ingrese el nombre del cliente a buscar: ");
@@ -70,7 +99,14 @@ void buscarCliente(){
 	}
 }
 	
-	
+	/*
+* ----------------------------------------------------------
+* Función    : listaarClientes
+* Descripción: Lista los clientes ingresados mostrando su Id y nombre
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void listarClientes(){
 	if(totalClientes==0){
 		printf("No hay clientes registrados\n");
@@ -83,7 +119,17 @@ void listarClientes(){
 		}
 	}
 }
-	
+
+/*
+* ----------------------------------------------------------
+* Función    : actualizarCliente
+* Descripción: Busca un cliente por ID y permite modificar
+*              uno de sus campos: nombre, teléfono o dirección,
+*              según la opción elegida por el usuario.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 	
 void actualizarCliente(){
 	int id;
@@ -135,7 +181,16 @@ void actualizarCliente(){
 	}
 }
 
-
+/*
+* ----------------------------------------------------------
+* Función    : eliminarCliente
+* Descripción: Busca un cliente por ID, muestra sus datos y
+*              solicita confirmación antes de marcarlo como
+*              inactivo en el sistema.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void eliminarCliente(){
 	int id;
     listarClientes();
@@ -172,6 +227,17 @@ void eliminarCliente(){
     }
 }
 
+/*
+* ----------------------------------------------------------
+* Función    : menuClientes
+* Descripción: Muestra el menú del módulo de clientes y dirige
+*              al usuario a la función correspondiente según
+*              la opción elegida. Se repite hasta que el usuario
+*              elija regresar al menú principal.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void menuClientes(){
 int opcion;
 do{
