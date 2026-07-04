@@ -1,12 +1,36 @@
+/*
+* ==========================================================
+* Archivo     : multas.c
+* Autor       : Hiram Dzul
+* Fecha       : 03/07/2026
+* Descripción : Permite generar multas por entrega tardía o
+*               pérdida de película, consultar multas pendientes
+*               de un cliente y registrar pagos de multas.
+* Versión     : 1.0
+* ==========================================================
+*/
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 #include "multas.h"
 #include "clientes.h"
-
+/* Arreglo de multas y contador total */
 struct Multa multas[MAX_MULTAS];
 int totalMultas=0;
 
+/*
+* ----------------------------------------------------------
+* Función    : generarMultaRetraso
+* Descripción: Genera una multa por entrega tardía calculando
+*              el monto según los días de retraso y una tarifa
+*              diaria fija de $10.00.
+* Parámetros :
+*   idRenta     (int) — ID de la renta asociada
+*   idCliente   (int) — ID del cliente que generó el retraso
+*   diasRetraso (int) — Número de días de retraso
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void generarMultaRetraso(int idRenta, int idCliente, int diasRetraso){
 	if(totalMultas>=MAX_MULTAS){
 		printf("No se pueden registrar mas multas\n");
@@ -34,7 +58,18 @@ void generarMultaRetraso(int idRenta, int idCliente, int diasRetraso){
 	printf("Monto a pagar: %.2f\n", nueva.monto);
 }
 
-
+/*
+* ----------------------------------------------------------
+* Función    : generarMultaPerdida
+* Descripción: Genera una multa por pérdida de película cuyo
+*              monto equivale al valor de reposición indicado.
+* Parámetros :
+*   idRenta       (int)   — ID de la renta asociada
+*   idCliente     (int)   — ID del cliente responsable
+*   valorPelicula (float) — Valor de reposición de la película
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void generarMultaPerdida(int idRenta, int idCliente, float valorPelicula){
 	if(totalMultas>=MAX_MULTAS){
 		printf("No se pueden registrar mÃ¡s multas\n");
@@ -62,6 +97,17 @@ void generarMultaPerdida(int idRenta, int idCliente, float valorPelicula){
   
 }
 
+/*
+* ----------------------------------------------------------
+* Función    : consultarMultaCliente
+* Descripción: Lista todas las multas pendientes (no saldadas)
+*              asociadas a un cliente específico, mostrando
+*              tipo, monto total, pagado y saldo pendiente.
+* Parámetros :
+*   idCliente (int) — ID del cliente a consultar
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void consultarMultaCliente(int idCliente){
 	int encontrado=0;
 	printf("===MULTAS PENDIENTES===\n");
@@ -82,6 +128,17 @@ void consultarMultaCliente(int idCliente){
 	}
 }
 
+/*
+* ----------------------------------------------------------
+* Función    : registrarPagoMulta
+* Descripción: Busca una multa por ID y registra un pago parcial
+*              o total. Valida que el monto sea mayor a 0 y no
+*              supere el saldo pendiente. Marca la multa como
+*              saldada si el pago cubre el total.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void registrarPagoMulta(){
 	int id;
 	printf("Ingrese el ID de la multa a pagar: ");
@@ -130,7 +187,17 @@ void registrarPagoMulta(){
 	}
 }
 
-
+/*
+* ----------------------------------------------------------
+* Función    : menuMultas
+* Descripción: Muestra el menú del módulo de multas y dirige
+*              al usuario a la función correspondiente según
+*              la opción elegida. Se repite hasta que el usuario
+*              elija regresar al menú principal.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void menuMultas(){
 	int opcion;
 	do{
