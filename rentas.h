@@ -1,3 +1,14 @@
+/*
+* ==========================================================
+* Archivo : rentas.h
+* Autor : José Ontiveros
+* Fecha : 03/07/2026
+* Descripción : Define la estructura Renta, su variable global y los prototipos de las funciones para registrar rentas y 
+devoluciones, y consultar las rentas activas.
+* Versión : 1.0
+* ==========================================================
+*/
+
 #ifndef RENTAS_H
 #define RENTAS_H
 #define MAX_RENTAS 100

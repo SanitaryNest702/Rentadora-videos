@@ -1,3 +1,14 @@
+/*
+* ==========================================================
+* Archivo : peliculas.h
+* Autor : José Ontiveros
+* Fecha : 03/07/2026
+* Descripción : Define las estructuras Pelicula y Categoria, sus variables globales y los prototipos de las funciones para agregar, 
+eliminar, buscar y listar películas y categorías.
+* Versión : 1.0
+* ==========================================================
+*/
+
 #ifndef PELICULAS_H
 #define PELICULAS_H
 #define MAX_PELICULAS 100
