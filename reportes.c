@@ -1,3 +1,14 @@
+/*
+* ==========================================================
+* Archivo     : reportes.c
+* Autor       : Hiram Dzul
+* Fecha       : 03/07/2026
+* Descripción : Genera reportes y estadísticas del sistema,
+*               incluyendo películas más rentadas, clientes
+*               frecuentes, promedios, ingresos y rentas vencidas.
+* Versión     : 1.0
+* ==========================================================
+*/
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -7,6 +18,16 @@
 #include "peliculas.h"
 #include "clientes.h"
 
+/*
+* ----------------------------------------------------------
+* Función    : listarPeliculasMasRentadas
+* Descripción: Cuenta las rentas por película y las muestra
+*              ordenadas de mayor a menor usando ordenamiento
+*              de burbuja.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void listarPeliculasMasRentadas(){
 	if(totalRentas==0){
 		printf("No hay rentas registradas\n");
@@ -43,7 +64,16 @@ void listarPeliculasMasRentadas(){
 	}
 }
 
-
+/*
+* ----------------------------------------------------------
+* Función    : listarClientesConMasRentas
+* Descripción: Cuenta las rentas por cliente y las muestra
+*              ordenadas de mayor a menor usando ordenamiento
+*              de burbuja.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void listarClientesConMasRentas(){
 	if(totalClientes==0){
 		printf("No hay clientes registrados\n");
@@ -88,6 +118,15 @@ void listarClientesConMasRentas(){
 	}
 }
 
+/*
+* ----------------------------------------------------------
+* Función    : calcularPromedioDiasRenta
+* Descripción: Calcula y muestra el promedio de días de duración
+*              de todas las rentas activas registradas en el sistema.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void calcularPromedioDiasRenta(){
 	if(totalRentas==0){
 		printf("No hay datos suficientes para calcular\n");
@@ -116,7 +155,16 @@ void calcularPromedioDiasRenta(){
     contadorReportes[2]++;
 }
 
-
+/*
+* ----------------------------------------------------------
+* Función    : calcularTotalMultas
+* Descripción: Calcula y muestra el total recaudado por multas
+*              y el monto pendiente por cobrar de todas las
+*              multas activas en el sistema.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void calcularTotalMultas(){
 	if(totalMultas==0){
 		printf("No se han registrado multas\n");
@@ -139,7 +187,15 @@ void calcularTotalMultas(){
 	printf("Total pendiente por cobrar: $%.2f\n", totalPendiente);
 }
 
-/*Calcular ingreso total por rentas*/
+/*
+* ----------------------------------------------------------
+* Función    : calcularIngresoTotalRentas
+* Descripción: Calcula y muestra el ingreso total estimado
+*              generado por todas las rentas activas registradas.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 
 void calcularIngresoTotalRentas(){
 	if(totalRentas==0){
@@ -163,7 +219,16 @@ void calcularIngresoTotalRentas(){
 }
 
 
-/*Listar Rentas proximas a vencer o ya vencidas*/
+/*
+* ----------------------------------------------------------
+* Función    : listarRentasVencidas
+* Descripción: Lista todas las rentas activas que no han sido
+*              devueltas, mostrando su estado como VENCIDA o
+*              Proxima a vencer según el campo vencida del struct.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 
 void listarRentasVencidas(){
 	if(totalRentas==0){
@@ -187,6 +252,17 @@ void listarRentasVencidas(){
 	}
 }
 
+/*
+* ----------------------------------------------------------
+* Función    : menuReportes
+* Descripción: Muestra el menú del módulo de reportes y dirige
+*              al usuario a la función correspondiente según
+*              la opción elegida. Se repite hasta que el usuario
+*              elija regresar al menú principal.
+* Parámetros : Ninguno
+* Retorna    : No retorna valor alguno
+* ----------------------------------------------------------
+*/
 void menuReportes() {
     int opcion;
     do {
