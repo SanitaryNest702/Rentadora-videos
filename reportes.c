@@ -152,7 +152,6 @@ void calcularPromedioDiasRenta(){
     printf("Total de dias rentados: %d\n", totalDias);
     printf("Promedio de dias por renta: %.2f dias\n", promedio);
 
-    contadorReportes[2]++;
 }
 
 /*
@@ -215,7 +214,6 @@ void calcularIngresoTotalRentas(){
 	printf("\n=== INGRESO TOTAL POR RENTAS ===\n");
 	printf("Total de rentas analizadas: %d\n", rentasContadas);
 	printf("Ingreso total estimado: $%.2f\n", totalIngreso);
-	contadorReportes[4]++;
 }
 
 
