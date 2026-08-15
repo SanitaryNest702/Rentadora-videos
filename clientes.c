@@ -19,7 +19,8 @@
     #include <unistd.h>
     #define LIMPIAR_PANTALLA() system("clear")
 #endif
-
+/*Prueba de agregado de comentarios
+Para ver si los cambios se realizan o no*/
 void pausar(){
 	printf("\nPresione ENTER para continuar...");
     while(getchar() != '\n');
